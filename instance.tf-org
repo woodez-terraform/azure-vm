@@ -32,7 +32,7 @@ resource "azurerm_virtual_machine" "demo-instance" {
     disable_password_authentication = true
     ssh_keys {
       key_data = file("woodez.pub")
-      path     = "/home/kwood/authorized_keys"
+      path     = "/home/kwood/.ssh/authorized_keys"
     }
   }
 }
