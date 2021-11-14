@@ -113,7 +113,11 @@ resource "azurerm_linux_virtual_machine" "main" {
   }
 }
 
+data "azurerm_public_ip" "pip" {
+  name                = azurerm_public_ip.pip.name
+  resource_group_name = azurerm_virtual_machine.pip.resource_group_name
+}
+
 output "public_ip_address" {
-  value       = "${azurerm_public_ip.pip.*.ip_address}"
-  description = "The private IP address of the main server instance."
+  value = data.azurerm_public_ip.pip.ip_address
 }
