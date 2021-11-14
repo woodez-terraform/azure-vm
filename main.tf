@@ -48,6 +48,7 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
+
 resource "azurerm_network_interface" "internal" {
   name                      = "${var.project}-nic2"
   resource_group_name       = azurerm_resource_group.main.name
@@ -110,4 +111,9 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_type = "Standard_LRS"
     caching              = "ReadWrite"
   }
+}
+
+output "instance_ip_addr" {
+  value       = azurerm_public_ip.pip.id
+  description = "The private IP address of the main server instance."
 }
